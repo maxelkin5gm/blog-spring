@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <th:block th:insert="~{/particles/head :: head(title='Main Page')}"/>
+</head>
+<body>
+
+
+<div th:insert="~{/particles/header :: header (users=${users})}"></div>
+
+
+<div class="row">
+    <div class="leftcolumn">
+        <div class="card">
+            <h2>About Me</h2>
+            <img style="width: 100%" th:src="${user.img}" alt="">
+            <p th:text="${user.name}">
+        </div>
+        <div class="card">
+            <a href="">
+                <button class="profileButton">Отправить сообщение</button>
+            </a>
+        </div>
+    </div>
+
+
+    <div class="rightcolumn">
+        <div class="card" th:each="post : ${posts}">
+            <a th:href="'/post/' + ${post.id}"><h2>Post</h2></a>
+            <h5>Title description, Dec 7, 2017</h5>
+            <h3 th:text="${post.text}"></h3>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

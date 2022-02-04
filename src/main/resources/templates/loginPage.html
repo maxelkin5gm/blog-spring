@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <th:block th:insert="~{/particles/head :: head(title='Вход')}"/>
+</head>
+<body>
+
+
+<div th:insert="~{/particles/header :: header (users=${users})}"></div>
+
+
+<div class="row">
+    <div class="midcolumn">
+        <div class="card">
+            <div class="loginPage">
+                <form action="/login" method="post">
+                    <h2>Вход</h2>
+
+                    <label for="username"><b>Электронная почта</b></label>
+                    <input type="text" placeholder="Введите электронную почту" id="username" name="username" required>
+
+                    <label for="password"><b>Пароль</b></label>
+                    <input type="password" placeholder="Введите пароль" id="password" name="password" required>
+
+                    <label for="remember-me"><b>Запомнить меня</b></label>
+                    <input type="checkbox" id="remember-me" name="remember-me"/>
+
+                    <input type="submit" value="Войти" id="submit" name="submit">
+                    <div>
+                        <a href="/reg">Зарегистрироваться</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

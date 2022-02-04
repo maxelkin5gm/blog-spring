@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+    <meta  http-equiv="Content-Type" content="text/html; charset=utf-8" >
+    <title>Регистрация</title>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        section {
+            background: white;
+            color: black;
+            border-radius: 1em;
+            padding: 50px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-right: -50%;
+            transform: translate(-50%, -50%)
+        }
+        /* Set a style for all buttons */
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            opacity: 0.9;
+        }
+        button:hover{
+            opacity: 1;
+        }
+        input[type=text], input[type=password] {
+            position: center;
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+
+<form action="/reg" method="post" th:object="${userForm}">
+    <section>
+        <div class="section">
+            <h1>Регистрация</h1>
+            <p>Заполните регистрационную форму</p>
+
+            <label>
+                <b>Электронная почта</b>
+                <input type="text" th:field="*{email}" placeholder="Введите электронную почту" required>
+            </label>
+
+            <label>
+                <b>Имя</b>
+                <input type="text" th:field="*{name}" placeholder="Введите свое имя" required>
+            </label>
+
+            <label>
+                <b>Пароль</b>
+                <input type="password" th:field="*{password}" placeholder="Введите пароль" required>
+            </label>
+
+            <button type="submit">Зарегистрироваться</button>
+        </div>
+    </section>
+</form>
+
+</body>
+</html>
+
+
+

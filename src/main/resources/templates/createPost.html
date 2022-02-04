@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <th:block th:insert="~{/particles/head :: head(title='Создать пост')}"/>
+</head>
+<body>
+
+
+<div class="row">
+    <div class="midcolumn">
+        <div class="card">
+                <textarea id = "MyID" name="text"># Test</textarea>
+                <script>
+                    var simplemde = new SimpleMDE({
+                        element: document.getElementById("MyID")
+                    });
+                    function getText(){
+                        fetch("/createPost", {
+                            method: 'POST',
+                            redirect: "follow",
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(simplemde.value())
+                        }).then(response => {
+                            if (response.redirected) {
+                                window.location.href = response.url;
+                            }
+                            // HTTP 301 response
+                        });
+                    }
+                </script>
+                <input type = "submit" onclick="getText()" value="Создать пост">
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

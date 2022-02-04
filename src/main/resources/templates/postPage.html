@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <th:block th:insert="~{/particles/head :: head(title='Post Page')}"/>
+</head>
+<body>
+
+
+<div th:insert="~{/particles/header :: header (users=${users})}"></div>
+
+
+<div class="row">
+    <div class="leftcolumn">
+        <div class="card">
+            <h2>About Me</h2>
+            <img style="width: 100%" th:src="${post.user.img}" alt="">
+            <p th:text="${post.user.name}">
+        </div>
+    </div>
+    <div class="rightcolumn">
+        <div class="card">
+            <h2>Post</h2>
+            <h5>Title description, Dec 7, 2017</h5>
+            <div class="postContent">
+                <textarea th:text="${post.text}" class="post"></textarea>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Комментарии</h3>
+            <div class="inputComment">
+                <textarea id="MyID" name="text" placeholder="Ваш комментарий"></textarea>
+            </div>
+
+            <button id="sendComment" class="profileButton" th:data-id="${post.id}" onclick="getText()">Оставить комментарий</button>
+
+
+            <div class="comment" th:each="comment : ${post.comments}">
+                <a href="#" class="commentator" th:text="${comment.owner.name}"></a>
+                <textarea th:text="${comment.text}" class="commentTest"></textarea>
+            </div>
+        </div>
+
+
+        <script>
+            var simplemde = new SimpleMDE({
+                element: document.getElementById("MyID")
+            });
+            document.querySelectorAll(".commentTest").forEach((comment) => {
+                var commentMDE = new SimpleMDE({
+                    element: comment,
+                    toolbar: false,
+                    status: false
+                });
+                commentMDE.togglePreview();
+            })
+            document.querySelectorAll(".post").forEach((comment) => {
+                var commentMDE = new SimpleMDE({
+                    element: comment,
+                    toolbar: false,
+                    status: false
+                });
+                commentMDE.togglePreview();
+            })
+
+            function getText() {
+                let post_id = document.querySelector('#sendComment').dataset.id;
+                const req = {
+                    post_id: post_id,
+                    text: simplemde.value()
+                }
+                fetch("/createComment", {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(req)
+                }).then(() => location.reload());
+            }
+
+        </script>
+    </div>
+</div>
+
+</body>
+</html>

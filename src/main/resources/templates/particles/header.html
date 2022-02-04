@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<body>
+
+<div class="header" th:fragment="header (users)">
+    <h2>Blog</h2>
+    <a href="/">
+        <button>Профиль</button>
+    </a>
+    <a href="/im">
+        <button>Сообщения</button>
+    </a>
+    <a href="/feed">
+        <button>Лента</button>
+    </a>
+    <input name="q" type="text" id="txtAutoComplete" list="languageList" onchange="redirect(this.value)"
+           placeholder="Найти пользователя"/>
+    <datalist id="languageList">
+        <!--/*@thymesVar id="user" type="com.blog.models.User"*/-->
+        <th:block th:each="user : ${users}">
+            <option th:data-url="${user.id}" th:text="${user.name}"></option>
+        </th:block>
+    </datalist>
+    <script>
+        function redirect(value) {
+            let options = document.getElementById("languageList").options;
+            for (var i = 0; i < options.length; i++) {
+                if (options[i].value === value)
+                    window.location = '/' + options[i].dataset.url;
+            }
+        }
+    </script>
+</div>
+
+</body>
+</html>
