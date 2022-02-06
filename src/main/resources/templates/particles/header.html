@@ -16,9 +16,9 @@
     <input name="q" type="text" id="txtAutoComplete" list="languageList" onchange="redirect(this.value)"
            placeholder="Найти пользователя"/>
     <datalist id="languageList">
-        <!--/*@thymesVar id="user" type="com.blog.models.User"*/-->
-        <th:block th:each="user : ${users}">
-            <option th:data-url="${user.id}" th:text="${user.name}"></option>
+        <!--/*@thymesVar id="userEntity" type="com.blog.entities.UserEntity"*/-->
+        <th:block th:each="userEntity : ${users}">
+            <option th:data-url="${userEntity.id}" th:text="${userEntity.name}"></option>
         </th:block>
     </datalist>
     <script>

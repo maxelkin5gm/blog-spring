@@ -1,11 +1,12 @@
 package com.blog.constrollers;
 
-import com.blog.models.User;
+import com.blog.entities.UserEntity;
 import com.blog.repositories.UserRepository;
 import com.blog.services.UserService;
 
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,18 +25,19 @@ public class AuthController {
     // регистрация
     @GetMapping("/reg")
     public String formRegistration(Model model) {
-        model.addAttribute("userForm", new User());
+        model.addAttribute("userForm", new UserEntity());
         return "formRegistration";
     }
 
     @PostMapping("/reg")
-    public String apiRegistration(@ModelAttribute @Valid User userForm, BindingResult bindingResult) {
+    public String registration(@ModelAttribute("userForm") @Valid UserEntity userEntity, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+            return "formRegistration";
         }
 
-        if (!userService.createUser(userForm)) {
+        var isRegistered = userService.register(userEntity);
+        if (!isRegistered) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
 
@@ -46,8 +48,8 @@ public class AuthController {
     // логин
     @GetMapping("/login")
     public String formLogin(Model model) {
-        var users = userRepository.findAll();
-        model.addAttribute("users", users);
+        var userEntities = userRepository.findAll();
+        model.addAttribute("users", userEntities);
         return "loginPage";
     }
 }

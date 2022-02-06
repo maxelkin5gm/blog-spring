@@ -1,7 +1,8 @@
 package com.blog.services.impl;
 
-import com.blog.models.User;
+import com.blog.entities.UserEntity;
 import com.blog.repositories.UserRepository;
+import com.blog.services.FileService;
 import com.blog.services.UserService;
 
 import lombok.AllArgsConstructor;
@@ -11,6 +12,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.util.Collections;
 
 
@@ -35,14 +37,30 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean createUser(User user) {
-        user.setRole("USER");
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+    public boolean register(UserEntity user) {
         try {
+            user.setRole("USER");
+            user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
             userRepository.save(user);
         } catch (Exception e) {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public UserEntity getAuthUserEntity(Principal principal) throws UsernameNotFoundException {
+        if (principal == null) {
+            throw new UsernameNotFoundException("User not authenticated");
+        }
+        return userRepository.findByEmail(principal.getName())
+                .orElseThrow(() -> new UsernameNotFoundException("User doesn't exists"));
+    }
+
+    @Override
+    public UserEntity addImg(String pathImg, Principal principal) throws UsernameNotFoundException {
+        var userEntity = getAuthUserEntity(principal);
+        userEntity.setImg(pathImg);
+        return userRepository.save(userEntity);
     }
 }

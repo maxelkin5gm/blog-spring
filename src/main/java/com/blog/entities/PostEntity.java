@@ -1,4 +1,4 @@
-package com.blog.models;
+package com.blog.entities;
 
 import lombok.*;
 
@@ -11,15 +11,15 @@ import java.util.List;
 @Table(name = "posts")
 @Data
 @NoArgsConstructor
-public class Post {
+public class PostEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
-    private User user;
+    private UserEntity user;
 
     @Column(name = "text")
     private String text;
@@ -27,6 +27,6 @@ public class Post {
     @Column(name = "date")
     private Date date;
 
-    @OneToMany(mappedBy = "post", fetch = FetchType.LAZY)
-    private List<Comment> comments = new ArrayList<>();
+    @OneToMany(mappedBy = "post", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<CommentEntity> comments = new ArrayList<>();
 }

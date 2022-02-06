@@ -75,7 +75,11 @@
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify(req)
-                }).then(() => location.reload());
+                }).then(response => {
+                    if (response.redirected) {
+                        window.location.href = response.url;
+                    } else location.reload()
+                });
             }
 
         </script>
