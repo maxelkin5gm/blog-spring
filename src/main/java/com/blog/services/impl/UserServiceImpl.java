@@ -2,7 +2,6 @@ package com.blog.services.impl;
 
 import com.blog.entities.UserEntity;
 import com.blog.repositories.UserRepository;
-import com.blog.services.FileService;
 import com.blog.services.UserService;
 
 import lombok.AllArgsConstructor;
