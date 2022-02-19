@@ -10,4 +10,5 @@ import java.util.List;
 
 public interface PostRepository extends JpaRepository<PostEntity, Long> {
     List<PostEntity> findByUser(UserEntity user);
+    List<PostEntity> findByOrderByDateDesc();
 }

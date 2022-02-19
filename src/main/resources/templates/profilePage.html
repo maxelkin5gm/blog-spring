@@ -44,7 +44,7 @@
     <div class="rightcolumn">
         <div class="card" th:each="post : ${posts}">
             <a th:href="'/post/' + ${post.id}"><h2>Post</h2></a>
-            <h5>Title description, Dec 7, 2017</h5>
+            <h5 th:text="${post.date}">Title description, Dec 7, 2017</h5>
             <h3 th:text="${post.text}"></h3>
         </div>
     </div>

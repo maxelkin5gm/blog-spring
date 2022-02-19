@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <th:block th:insert="~{/particles/head :: head(title='Post Page')}"/>
+</head>
+<body>
+
+
+<div th:insert="~{/particles/header :: header (users=${users})}"></div>
+
+
+<div class="row">
+    <div class="midcolumn">
+        <div class="card" th:each="post : ${posts}">
+            <a th:href="'/post/' + ${post.id}"><h2>Post</h2></a>
+            <h5 th:text="${post.date}">Title description, Dec 7, 2017</h5>
+            <textarea th:text="${post.text}" class="post"></textarea>
+        </div>
+            <script>
+                document.querySelectorAll(".post").forEach((comment) => {
+                    var commentMDE = new SimpleMDE({
+                        element: comment,
+                        toolbar: false,
+                        status: false
+                    });
+                    commentMDE.togglePreview();
+                })
+
+            </script>
+        </div>
+    </div>
+</div>
+
+
+
+</body>
+</html>

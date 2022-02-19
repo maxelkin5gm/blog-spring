@@ -44,7 +44,8 @@
 
         <script>
             var simplemde = new SimpleMDE({
-                element: document.getElementById("MyID")
+                element: document.getElementById("MyID"),
+                maxLength: 100
             });
             document.querySelectorAll(".commentTest").forEach((comment) => {
                 var commentMDE = new SimpleMDE({
@@ -54,13 +55,14 @@
                 });
                 commentMDE.togglePreview();
             })
-            document.querySelectorAll(".post").forEach((comment) => {
-                var commentMDE = new SimpleMDE({
-                    element: comment,
+            document.querySelectorAll(".post").forEach((post) => {
+                console.log(post);
+                var commentMDE1 = new SimpleMDE({
+                    element: post,
                     toolbar: false,
                     status: false
                 });
-                commentMDE.togglePreview();
+                commentMDE1.togglePreview();
             })
 
             function getText() {

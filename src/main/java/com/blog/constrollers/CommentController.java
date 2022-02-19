@@ -4,14 +4,11 @@ import com.blog.entities.CommentEntity;
 import com.blog.models.Comment;
 import com.blog.repositories.CommentRepository;
 import com.blog.repositories.PostRepository;
-import com.blog.repositories.UserRepository;
 
 import com.blog.services.UserService;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

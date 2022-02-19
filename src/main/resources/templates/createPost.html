@@ -21,7 +21,7 @@
                             headers: {
                                 'Content-Type': 'application/json'
                             },
-                            body: JSON.stringify(simplemde.value())
+                            body: simplemde.value()
                         }).then(response => {
                             if (response.redirected) {
                                 window.location.href = response.url;

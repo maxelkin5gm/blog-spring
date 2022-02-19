@@ -28,7 +28,8 @@ public class MainController {
     // test
     @GetMapping("/test")
     public String test(Principal principal) {
-        var userEntity = userService.getAuthUserEntity(principal);
+//        var userEntity = userService.getAuthUserEntity(principal);
+
 
         return "test";
     }
@@ -59,6 +60,18 @@ public class MainController {
         } else {
             return "mainPage";
         }
+    }
+
+    @GetMapping("/feed")
+    public String feedPage(Model model) {
+
+        var postEntities = postRepository.findByOrderByDateDesc();
+        var userEntities = userRepository.findAll();
+
+        model.addAttribute("posts", postEntities);
+        model.addAttribute("users", userEntities);
+
+        return "feedPage";
     }
 
 
