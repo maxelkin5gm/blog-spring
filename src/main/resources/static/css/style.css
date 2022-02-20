@@ -13,39 +13,6 @@ button{
     transition: 0.5s;
 }
 /* Add a gray background color with some padding */
-.loginPage{
-    background: white;
-    color: black;
-    border-radius: 1em;
-    padding: 50px;
-}
-.loginPage label{
-    font-size: 16px;
-    font-weight: bold;
-    position: center;
-    display: inline-block;
-    margin-bottom: 10px;
-    margin-top: 10px;
-}
-.loginPage input[type="password"], input[type="text"] {
-    position: center;
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-}
-
-.loginPage a{
-    border: none;
-    outline: none;
-    color: #cb724c;
-    transition: 0.5s;
-}
-.loginPage a:hover{
-    color: #69b4f3;
-}
 body {
     font-family: Arial, serif;
     padding: 20px;
@@ -125,42 +92,22 @@ body {
     margin-top: 20px;
     border-radius: 10px;
 }
-.card input[type="submit"]{
-    background: white;
-    font-size: 15px;
-    color: black;
-    border: none;
-    display: inline;
-    margin: 10px;
-    cursor: pointer;
-    padding: 20px;
-    border-radius: 10px;
-    width: 100%;
-    transition: 0.5s;
-}
-.card input[type="submit"]:hover{
-    background: black;
-    color: white;
-}
 .comment .CodeMirror {
-    height: 100%;
-    border: 0;
+    height: 30px;
 }
 .comment{
-    padding: 25px;
     margin-top: 20px;
     margin-bottom: 10px;
+    overflow-y: auto;
     height: 400px;
-    border: 2px solid gainsboro;
-    border-radius: 10px;
 }
-.commentator{
-    font-size: 20px;
-    font-family: 'Montserrat', sans-serif;
+.comment::-webkit-scrollbar{
+    width: 7px;
+    background-color: #f1f1f1;
 }
-.commentator:hover{
-    border-bottom: 2px black solid;
-    transition: 0.5s;
+.comment::-webkit-scrollbar-thumb{
+    background-color: black;
+    border-radius: 12px;
 }
 
 .profileImage img{
@@ -203,6 +150,7 @@ body {
     box-shadow: 0 0 20px rgba(0, 0, 0, .1);
     transition: .5s;
 }
+
 .card a:hover {
     background-position: right center;
 }
