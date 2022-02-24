@@ -1,7 +1,7 @@
 package com.blog.constrollers;
 
 import com.blog.entities.CommentEntity;
-import com.blog.models.Comment;
+import com.blog.dao.Comment;
 import com.blog.repositories.CommentRepository;
 import com.blog.repositories.PostRepository;
 

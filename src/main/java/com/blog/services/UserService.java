@@ -16,5 +16,5 @@ public interface UserService extends UserDetailsService {
 
     UserEntity getAuthUserEntity(Principal principal) throws UsernameNotFoundException;
 
-    UserEntity addImg(String pathImg, Principal principal) throws UsernameNotFoundException;
+    void addImg(String pathImg, Principal principal) throws UsernameNotFoundException;
 }

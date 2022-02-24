@@ -57,9 +57,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserEntity addImg(String pathImg, Principal principal) throws UsernameNotFoundException {
+    public void addImg(String pathImg, Principal principal) throws UsernameNotFoundException {
         var userEntity = getAuthUserEntity(principal);
         userEntity.setImg(pathImg);
-        return userRepository.save(userEntity);
+        userRepository.save(userEntity);
     }
 }

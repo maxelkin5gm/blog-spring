@@ -1,4 +1,4 @@
-package com.blog.models;
+package com.blog.dao;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
